@@ -11,7 +11,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:power_image_ext/remove_aware_map.dart';
 
-import 'image_info_ext.dart';
 import 'image_provider_ext.dart';
 
 
@@ -447,11 +446,7 @@ class ImageCacheExt extends ImageCache {
     void listener(ImageInfo? info, bool syncCall) {
       int? sizeBytes;
       if (info != null) {
-        if (info is PowerImageInfo) {
-          sizeBytes = info.width! * info.height! * 4;
-        } else {
-          sizeBytes = info.image.height * info.image.width * 4;
-        }
+        sizeBytes = info.sizeBytes;
         info.dispose();
       }
       final _CachedImage image = _CachedImage(

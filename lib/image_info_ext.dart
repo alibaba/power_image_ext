@@ -11,6 +11,8 @@ class PowerTextureImageInfo extends PowerImageInfo {
   final int? width;
   final int? height;
 
+  int get sizeBytes => width! * height! * 4;
+
   PowerTextureImageInfo(
       {this.textureId,
       this.width,
@@ -66,10 +68,6 @@ Future<ui.Image> _createImage(int width, int height) async {
 }
 
 class PowerImageInfo extends ImageInfo {
-  /// DO NOT use powerImageInfo.image.width/.height
-  /// Use powerImageInfo.width/.height directly.
-  int? get width => image.width;
-  int? get height => image.height;
   PowerImageInfo({required ui.Image image, double scale = 1.0, String? debugLabel})
       : super(image: image, scale: scale, debugLabel: debugLabel);
 
